@@ -1,0 +1,61 @@
+{% extends "admin_base.html" %} {% block head %} {{ super() }} <link
+rel="stylesheet" type="text/css" href="{{url_for('static',
+filename="css/main.css")}}"> {%endblock %} {% block content %} {% with messages
+= get_flashed_messages() %} {% if messages %}
+<div class="container mt-4">
+  {% for message in messages %}
+  <div class="alert alert-success" role="alert">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %} {% endwith %}
+
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="col-md-8">
+    <div class="card shadow">
+      <div class="card-body">
+        <div class="container">
+          <center><h2>List Of Employee Leaves</h2></center>
+          <hr />
+          <hr />
+          <br />
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Employee Name</th>
+                <th>From Date</th>
+                <th>To Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for leave in leaves %}
+              <tr>
+                <td>{{ leave.user.name }}</td>
+                <td>{{ leave.date_from }}</td>
+                <td>{{ leave.date_to }}</td>
+                <td>
+                  {{ leave.reason }}
+                </td>
+                <td>
+                  {{ leave.status }}
+                </td>
+                <td>
+                    <span><a href="{{ url_for('main.update_leave_status', leave_id=leave.id, status='Approved') }}" class="btn btn-success btn-sm">
+                        <i class="fas fa-solid fa-check"></i>
+                      </a></span>
+                      <span><a href="{{ url_for('main.update_leave_status', leave_id=leave.id, status='Rejected') }}" class="btn btn-danger btn-sm">
+                        <i class="fas fa-solid fa-trash"></i>
+                      </a></span>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

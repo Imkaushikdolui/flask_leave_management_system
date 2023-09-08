@@ -1,0 +1,39 @@
+{% if current_user.is_admin() %}
+{% extends "admin_base.html" %}
+{% elif current_user.is_employee() %}
+{% extends "employee_base.html" %}
+{% endif %}
+
+
+{% block head %} {{ super() }} <link
+rel="stylesheet" type="text/css" href="{{url_for('static',
+filename="css/main.css")}}"> {%endblock %} {% block content %} {% with messages
+= get_flashed_messages() %} {% if messages %}
+<div class="container mt-4">
+  {% for message in messages %}
+  <div class="alert alert-success" role="alert">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %} {% endwith %}
+
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="col-md-8">
+    <div class="card shadow">
+      <div class="card-body">
+        <div class="container">
+          <center><h2>Profile</h2></center>
+{% if current_user.is_admin() %}
+<a href="{{ url_for('main.update_employee', user_id=user.id) }}" class="btn btn-primary btn-sm">
+    <i class="fas fa-edit"></i> Update
+  </a>
+{% endif %}
+<hr>
+          <p><strong>Name:</strong> {{ user.name }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Role:</strong> {{ user.role }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

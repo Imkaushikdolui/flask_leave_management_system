@@ -1,0 +1,51 @@
+{% extends "employee_base.html" %} {% block head %} {{ super() }} <link
+rel="stylesheet" type="text/css" href="{{url_for('static',
+filename="css/main.css")}}"> {%endblock %} {% block content %} {% with messages
+= get_flashed_messages() %} {% if messages %}
+<div class="container mt-4">
+  {% for message in messages %}
+  <div class="alert alert-success" role="alert">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %} {% endwith %}
+
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="col-md-8">
+    <div class="card shadow">
+      <div class="card-body">
+        <div class="container">
+          <center><h2>My Leaves</h2></center>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>From Date</th>
+                <th>To Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for leave in leaves %}
+              <tr>
+                <td>{{ leave.date_from }}</td>
+                <td>{{ leave.date_to }}</td>
+                <td>{{ leave.reason }}</td>
+                <td>
+                  {% if leave.status == 'Pending' %}
+                  <span style="color: red">{{ leave.status }}</span>
+                  {% elif leave.status == 'Approved' %}
+                  <span style="color: green">{{ leave.status }}</span>
+                  {% else %}
+                  <span style="color: red">{{ leave.status }}</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</div>

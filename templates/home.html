@@ -1,0 +1,18 @@
+{% extends "home_base.html" %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 text-center">
+            <img src="{{ url_for('static', filename='images/leave_icon.jpg') }}" alt="Leave Icon" height="500px">
+            <h1 class="mt-4">Leave Management System</h1>
+            <p class="mt-3">Streamline your leave requests and approvals.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

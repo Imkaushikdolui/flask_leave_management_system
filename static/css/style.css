@@ -1,0 +1,69 @@
+.navbar {
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    left: 0; 
+    right: 0;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.nav-link {
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #ffc107;
+}
+
+.main-content {
+    padding: 20px;
+    border-radius: 8px;
+    margin-top:150px; 
+    margin-left:150px; 
+}
+
+
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.fa-icons {
+    font-size: 24px;
+}
+.fa-icon:hover {
+    color:#ffc107;
+}
+/* Sidebar Styles */
+.sidebar {
+    background-color: #333;
+    padding-top: 0;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 60px; /* Stick to the top */
+    left: 0;
+    width: 250px;
+    overflow-x: hidden;
+}
+
+
+.sidebar .nav-link {
+    color: #fff;
+    font-size: 24px;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #444;
+}
+
+/* Custom CSS to align icons to the right */
+.navbar-nav {
+    margin-left: auto;
+}

@@ -1,0 +1,29 @@
+{% extends "employee_base.html" %} {% block head %} {{ super() }} <link rel="stylesheet"
+type="text/css" href="{{url_for('static', filename="css/main.css")}}"> {%
+endblock %} {% block content %}
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="col-md-8">
+    <div class="card shadow">
+      <div class="card-body">
+        <h2 class="card-title text-center">Apply Leave</h2>
+        <form method="POST" action="/apply_leave">
+          <div class="mb-3">
+            <label for="date_from" class="form-label">From Date:</label>
+            <input type="date" class="form-control" id="date_from" name="date_from" required>
+          </div>
+          <div class="mb-3">
+            <label for="date_to" class="form-label">To Date:</label>
+                    <input type="date" class="form-control" id="date_to" name="date_to" required>
+          </div>
+          <div class="mb-3">
+            <label for="reason" class="form-label">Reason:</label>
+                    <textarea class="form-control" id="reason" name="reason" rows="4" required></textarea>
+          </div>
+          </div>
+          <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

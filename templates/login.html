@@ -1,0 +1,56 @@
+{% extends "home_base.html" %} {% block head %} {{ super() }} <link rel="stylesheet"
+type="text/css" href="{{url_for('static', filename="css/main.css")}}"> 
+{%endblock %} {% block content %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="container mt-4">
+      {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<div
+  class="container d-flex justify-content-center align-items-center"
+>
+  <div class="col-md-8">
+    <div class="card shadow">
+      <div class="card-body">
+        <h2 class="card-title text-center">LOGIN</h2>
+        <form method="POST" action="/login">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Enter Your Email"
+              autocomplete="off"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="Enter Your Password"
+              autocomplete="off"
+            />
+          </div>
+          <button type="submit" class="btn btn-dark">Login</button>
+          <br>
+          <br>
+          <span>Dont have an account</span>
+          <a href="{{ url_for('auth.signup') }}">Register</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

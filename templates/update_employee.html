@@ -1,0 +1,55 @@
+{% extends "admin_base.html" %}
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename="css/main.css")}}">
+{% endblock %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="col-md-8">
+    <div class="card shadow">
+      <div class="card-body">
+        <h2 class="card-title text-center">Update Details</h2>
+        <form method="POST" action="{{ url_for('main.update_employee', user_id=employee.id) }}">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="Enter Full Name"
+              autocomplete="off"
+              value="{{ employee.name }}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Enter Email"
+              autocomplete="off"
+              value="{{ employee.email }}"
+            />
+          </div>
+          <div class="mb-3">
+            <div class="mb-3">
+                <label for="password" class="form-label">Password (leave blank to keep current):</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Enter Password"
+                    autocomplete="off"
+                />
+            </div>
+          <button type="submit" class="btn btn-dark">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

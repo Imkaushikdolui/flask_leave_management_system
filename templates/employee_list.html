@@ -1,0 +1,60 @@
+{% extends "admin_base.html" %} {% block head %} {{ super() }} <link
+rel="stylesheet" type="text/css" href="{{url_for('static',
+filename="css/main.css")}}"> {% endblock %} {% block content %} {% with messages
+= get_flashed_messages() %} {% if messages %}
+<div class="container mt-4">
+  {% for message in messages %}
+  <div class="alert alert-success" role="alert">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %} {% endwith %}
+
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="col-md-8">
+    <div class="card shadow">
+      <div class="card-body">
+        <div class="container">
+          <center><h2>Employee List</h2></center>
+          <br />
+          <hr />
+          <hr />
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Slno.</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+                <!-- Add a column for actions -->
+              </tr>
+            </thead>
+            <tbody>
+              {% for serial_number, employee in employees %}
+              <tr>
+                <td>{{ serial_number }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>
+                  <a
+                    href="{{ url_for('main.update_employee', user_id=employee.id) }}"
+                    class="btn btn-primary btn-sm"
+                  >
+                    <i class="fas fa-edit"></i> Update
+                  </a>
+                    <form method="POST" action="{{ url_for('main.delete_employee', user_id=employee.id) }}">
+                      <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i> Delete
+                      </button>
+                    </form>
+                  </td>
+                  
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
